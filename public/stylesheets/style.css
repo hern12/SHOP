@@ -104,5 +104,6 @@ a:hover{
   right: 0;
 }
 footer{
-    
+    height: 50px;
+    background-color: #333333;
 }
