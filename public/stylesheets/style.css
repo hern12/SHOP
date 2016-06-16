@@ -26,33 +26,33 @@ a:hover{
   text-decoration: none;
 }
 
-.products .item-list{
+.products .item-list , .item-list{
 	text-align: center;
 	height: auto;
 }
-.products .item-list li{
+.products .item-list li , .item-list li{
 	display: inline-block;
 	width: 260px;
     height: 500px;
 	padding: 20px 20px 20px 20px;
 	vertical-align:top;
 }
-.products .item-list li a{
+.products .item-list li a , .item-list li a{
 	width: 100%;
 }
-.products .item-list li a img{
+.products .item-list li a img , .item-list li a img{
 	width: 220px;
 	height: 220px;
 	padding-bottom: 15px;
 	border-bottom: 5px solid #a9a9a9;
 }
-.products .item-list li a .description{
+.products .item-list li a .description , .item-list li a .description{
 	text-align: left;
 	height: 80px;
 	width: auto;
 	color:black;
 }
-.products .item-list li a .price{
+.products .item-list li a .price , .item-list li a .price{
 	text-align: left;
 	color:black;
 }

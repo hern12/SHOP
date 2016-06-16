@@ -9,7 +9,45 @@
         <% include ./header %>
     </header>
  <div class="container">
-    <h1>This is shop page</h1>
+    <div ng-app="Product">
+    	<h1>This is shop page</h1>
+    	<div ng-controller = "ProductsController" ng-init ="listTopic()">
+   			<ul class = "item-list">
+				<li>
+					<a href="#">
+						<img src="images/1.jpg" alt="img01">
+						<h4 class="description">รุ่น Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ips</h4>
+						<h4 class="price">ราคา: 100฿</h4>
+						<button class="button"><span>BUY</span></button>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="images/2.jpg" alt="img01">
+						<h4 class="description">รุ่น</h4>
+						<h4 class="price">ราคา: 100฿</h4>	
+						<button class="button"><span>BUY</span></button>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="images/3.jpg" alt="img01">
+						<h4 class="description">รุ่น</h4>
+						<h4 class="price">ราคา: 100฿</h4>
+						<button class="button"><span>BUY</span></button>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="images/4.jpg" alt="img01">
+						<h4 class="description">รุ่น</h4>
+						<h4 class="price">ราคา: 100฿</h4>
+						<button class="button"><span>BUY</span></button>
+					</a>
+				</li>
+			</ul>
+    	</div>
+    </div>
  </div><!-- container -->
  <footer>
     <% include ./footer %>
@@ -17,6 +55,23 @@
 </body>
 <script type="text/javascript" src="./javascripts/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="./Itemslider/js/jquery.catslider.js"></script>
+<script type="text/javascript" src="./javascripts/angular.js"></script>
 <script type="text/javascript">
+</script>
+<script>
+	var app = angular.module("Product",[]);
+	app.controller("ProductsController",function($scope,$http){
+		$scope.title = "Hello Webboard";
+		$scope.Topics = [];
+		$scope.listTopic = function(){
+			var url = "./product";
+			$http.get(url).success(function(data){
+				console.log(data);
+				$scope.Topics = data;
+			}).error(function(data){
+				alert("Error");
+			})
+		}
+	})
 </script>
 </html>
