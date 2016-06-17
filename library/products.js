@@ -30,7 +30,9 @@ module.exports = new function(){
 					var row_data = rows[r];
 					datas.push({
 						productID : row_data.ProductID,
-						productName : row_data.ProductName
+						productName : row_data.ProductName,
+						productImg : row_data.ImgUrl,
+						unitPrice : row_data.UnitPrice
 					});
 				}
 				callbackSuccess(datas);

@@ -11,37 +11,13 @@
  <div class="container">
     <div ng-app="Product">
     	<h1>This is shop page</h1>
-    	<div ng-controller = "ProductsController" ng-init ="listTopic()">
+    	<div ng-controller = "ProductsController" ng-init ="listProduct()" class="product-list">
    			<ul class = "item-list">
-				<li>
+				<li ng-repeat="t in Topics" >
 					<a href="#">
-						<img src="images/1.jpg" alt="img01">
-						<h4 class="description">รุ่น Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ips</h4>
-						<h4 class="price">ราคา: 100฿</h4>
-						<button class="button"><span>BUY</span></button>
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<img src="images/2.jpg" alt="img01">
-						<h4 class="description">รุ่น</h4>
-						<h4 class="price">ราคา: 100฿</h4>	
-						<button class="button"><span>BUY</span></button>
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<img src="images/3.jpg" alt="img01">
-						<h4 class="description">รุ่น</h4>
-						<h4 class="price">ราคา: 100฿</h4>
-						<button class="button"><span>BUY</span></button>
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<img src="images/4.jpg" alt="img01">
-						<h4 class="description">รุ่น</h4>
-						<h4 class="price">ราคา: 100฿</h4>
+						<img src="{{t.productImg}}" alt="img01">
+						<h4 class="description">ชื่อ : {{t.productName}}</h4>
+						<h4 class="price">ราคา: {{t.unitPrice}}</h4>
 						<button class="button"><span>BUY</span></button>
 					</a>
 				</li>
@@ -63,11 +39,13 @@
 	app.controller("ProductsController",function($scope,$http){
 		$scope.title = "Hello Webboard";
 		$scope.Topics = [];
-		$scope.listTopic = function(){
+		$scope.listProduct = function(){
 			var url = "./product";
 			$http.get(url).success(function(data){
-				console.log(data);
-				$scope.Topics = data;
+			$scope.Topics = data;
+			angular.forEach(data,function(value,key){
+				console.log(key + ': ' + value);
+			});
 			}).error(function(data){
 				alert("Error");
 			})
