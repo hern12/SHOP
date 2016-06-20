@@ -11,11 +11,11 @@
  <div class="container">
     <div ng-app="Product">
     	<h1>This is shop page</h1>
-    	<div ng-controller = "ProductsController" ng-init ="listProduct()" class="product-list">
-   			<ul class = "item-list">
-				<li ng-repeat="t in Topics" >
+    	<div ng-controller = "ProductsController" ng-init ="listProduct()" class="">
+   			<ul class = "item-list col-md-7 col-centered">
+				<li ng-repeat="t in Topics" class="col-md-2 col-md-offset-0">
 					<a href="#">
-						<img src="{{t.productImg}}" alt="img01">
+						<img ng-src="{{t.productImg}}" alt="img01">
 						<h4 class="description">ชื่อ : {{t.productName}}</h4>
 						<h4 class="price">ราคา: {{t.unitPrice}}</h4>
 						<button class="button"><span>BUY</span></button>
@@ -43,9 +43,6 @@
 			var url = "./product";
 			$http.get(url).success(function(data){
 			$scope.Topics = data;
-			angular.forEach(data,function(value,key){
-				console.log(key + ': ' + value);
-			});
 			}).error(function(data){
 				alert("Error");
 			})

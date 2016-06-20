@@ -103,6 +103,11 @@ a:hover{
   opacity: 1;
   right: 0;
 }
+
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
 footer{
     height: 50px;
     background-color: #333333;
