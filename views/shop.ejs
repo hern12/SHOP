@@ -39,10 +39,20 @@
 	app.controller("ProductsController",function($scope,$http){
 		$scope.title = "Hello Webboard";
 		$scope.Topics = [];
+		$scope.Name = [];
 		$scope.listProduct = function(){
 			var url = "./product";
 			$http.get(url).success(function(data){
 			$scope.Topics = data;
+			for(var i=0;i<$scope.Topics.length;i++){
+				//console.log($scope.Topics[i].productName.length);
+				if($scope.Topics[i].productName.length > 40){
+					var productName = $scope.Topics[i].productName.substr(0, 40);
+					console.log(productName);
+					$scope.Topics[i].productName = productName+"...";
+				}
+			}
+			console.log($scope.Topics);
 			}).error(function(data){
 				alert("Error");
 			})

@@ -48,8 +48,8 @@ a:hover{
 }
 .products .item-list li a .description , .item-list li a .description{
 	text-align: left;
-	height: 80px;
-	width: auto;
+	height:40px;
+	width: 100%;
 	color:black;
 }
 .products .item-list li a .price , .item-list li a .price{
