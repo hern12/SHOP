@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-
 router.get('/', function(req, res, next) { 
 		shop.listProduct(function(errorMessage){
 			console.log(errorMessage);
@@ -12,4 +11,7 @@ router.get('/', function(req, res, next) {
 		});
 });
 
+router.post('/save',function(req,res){
+    shop.saveProduct(req.body.pName);
+});
 module.exports = router;

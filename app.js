@@ -4,11 +4,24 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var product = require('./routes/product');
+var expressValidator = require('express-validator');
+var expressSession = require('express-session');
+var multer  =   require('multer');
 var app = express();
+
+var storage =   multer.diskStorage({
+  destination: function (req, file, callback) {
+    callback(null, './images');
+  },
+  filename: function (req, file, callback) {
+    callback(null, file.fieldname + '-' + Date.now());
+  }
+});
+var upload = multer({ storage : storage}).single('userPhoto');
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -19,8 +32,10 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(expressValidator());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(expressSession({secret:'max',saveUninitialized:false,resave:false}));
 
 app.use('/', routes);
 app.use('/users', users);

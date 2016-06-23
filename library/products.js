@@ -39,4 +39,21 @@ module.exports = new function(){
 			}
 		})
 	}
+
+	this.saveProduct = function(pName,dName,ImgUrl,Uprice,Dates){
+		var sql = "insert into products(ProductName,Description,ImgUrl,UnitPrice,Dates)";
+		sql +=" values('"+pName+"','"+dName+"','"+ImgUrl+"','"+Uprice+"','"+Dates+"')";
+		console.log(sql);
+		db.query(sql,function(err,rows,fields){
+			if(err){
+				console.log(err);
+				//callbackError(err.message);
+			}else if(rows.length==0){
+				console.log("ไม่สามารถบันทึกข้อมูลได้");
+			}else{
+				console.log(rows.insertId);
+			}
+		});
+	}
+
 }

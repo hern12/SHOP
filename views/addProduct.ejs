@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<% include ./head %>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="form-box" ng-app="AddProduct">
+			<form class="form-group" ng-controller = "AddProductsController">
+				<h4>ชื่อสินค้า</h4><input type="text" class="form-control" ng-model="pName">
+				<h4>รายละเอียดสินค้า</h4><textarea class="form-control" rows="5" id="detail" ng-model="pDetail"></textarea>
+				<h4>UPLOAD รูปภาพ</h4><input id="input-2" name="input2[]" type="file" class="file" multiple data-show-upload="false" data-show-caption="true" ng-model="pImg">
+				<h4>ราคา</h4><input class="form-control" type="number" pattern="\d*" min="1" ng-model="price"/>
+				<br/>
+				<button type="button" class="btn btn-primary" ng-click="addProduct()">Submit</button>
+			</form>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="./javascripts/angular.js"></script>
+<script>
+	var app = angular.module("AddProduct",[]);
+	app.controller("AddProductsController",function($scope,$http,$location){
+		$scope.pName = "";
+		$scope.pDetail = "";
+		$scope.pImg = "";
+		$scope.price = "";
+		$scope.addProduct = function(){
+			var url ="./product/save";
+			var data = {pName:$scope.pName}
+			$http.post(url,data).success(function(result){
+				console.log(result);
+			}).error(function(){
+				console.log("ERROR");
+			});
+		}
+	});
+
+</script>
+</html>
